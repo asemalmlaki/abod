@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقد نقل جامعي - المالكي</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f0f4f8;
+            color: #2d3748;
+        }
+        
+        .contract-container {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .header-section {
+            border-bottom: 2px solid #e2e8f0;
+            background: linear-gradient(to right, #4a5568, #2d3748);
+            color: white;
+        }
+        
+        .section-title {
+            border-bottom: 2px solid #cbd5e0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .party-box {
+            border: 1px solid #cbd5e0;
+            border-radius: 0.5rem;
+            background: #f7fafc;
+        }
+        
+        .input-field {
+            border-bottom: 1px dashed #cbd5e0;
+            padding: 0.25rem 0.5rem;
+            background: transparent;
+            text-align: center;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-bottom: 1px dashed #4a5568;
+            background: #edf2f7;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: #2b6cb0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2c5282;
+        }
+        
+        .btn-secondary {
+            background: #718096;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+        
+        .signature-box {
+            border: 1px dashed #cbd5e0;
+            padding: 1.5rem;
+            background: #f7fafc;
+            margin-top: 2rem;
+        }
+        
+        .clause-item {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-left: 3px solid #cbd5e0;
+            background: #f7fafc;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80px;
+            height: 80px;
+        }
+        
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* توقيعات الطباعة - تظهر فقط عند الطباعة */
+        .print-signatures {
+            display: none;
+        }
+        
+        /* تحسينات للطباعة */
+        @media print {
+            body {
+                background: white;
+                font-size: 14px;
+                line-height: 1.4;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .contract-container {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .header-section {
+                background: white !important;
+                color: black !important;
+                border-bottom: 2px solid black;
+                -webkit-print-color-adjust: exact;
+                padding: 1rem;
+            }
+            
+            .input-field {
+                border-bottom: 1px dashed #718096 !important;
+                background: transparent !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                color: black !important;
+            }
+            
+            .party-box {
+                border: 1px solid #cbd5e0 !important;
+                background: #f7fafc !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .section-title {
+                border-bottom: 1px solid #cbd5e0 !important;
+            }
+            
+            .clause-item {
+                border-left: 2px solid #cbd5e0 !important;
+                background: #f7fafc !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .signature-box {
+                display: none !important;
+            }
+            
+            .btn {
+                display: none !important;
+            }
+            
+            .logo-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            
+            /* إظهار توقيعات الطباعة */
+            .print-signatures {
+                display: flex !important;
+                justify-content: space-between;
+                margin-top: 3rem;
+                page-break-inside: avoid;
+            }
+            
+            .print-signature {
+                width: 48%;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .print-signature-line {
+                border-bottom: 1px dashed #333;
+                padding: 0.5rem;
+                margin-top: 2rem;
+                width: 100%;
+            }
+
+            .signature-image {
+                max-width: 100%;
+                height: auto;
+                margin-top: 1rem;
+            }
+            
+            /* إخفاء عناصر غير ضرورية للطباعة */
+            .print-hide {
+                display: none !important;
+            }
+            
+            /* تحسين المسافات للطباعة */
+            .p-6 {
+                padding: 1rem !important;
+            }
+            
+            .mb-8, .mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .space-y-4 > * + * {
+                margin-top: 0.5rem !important;
+            }
+
+            .date-display {
+                background-color: transparent !important;
+            }
+        }
+
+        .date-display {
+            background-color: #f0f4f8;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.5rem 0;
+            min-width: 250px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 flex items-center justify-center">
+    <div class="contract-container w-full max-w-3xl mx-auto">
+        <div class="header-section p-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-right mb-4 md:mb-0">
+                    <h1 class="text-2xl font-bold mb-2">المالكي للنقل الجامعي</h1>
+                    <p class="text-sm">عبدالله سعيد المالكي</p>
+                    <p class="text-sm mt-1">الهاتف: 0550388389 - البريد الإلكتروني: contact@almalakitransport.sa</p>
+                </div>
+                <div class="logo-container">
+                    <img src="/1.webp" alt="شعار المالكي للنقل الجامعي" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="hidden items-center justify-center text-2xl text-blue-600 w-full h-full">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6">
+            <h2 class="text-xl font-bold text-center mb-6 border-b pb-2">عقد نقل جامعي</h2>
+
+            <p class="text-base text-center mb-6">
+                إنه في يوم 
+                <span id="contractDay" class="input-field font-bold"></span>
+                الموافق
+                <input type="text" id="contractDate" class="input-field font-bold text-center" style="width: 120px;">
+                تم الاتفاق بين كل من:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="party-box p-4">
+                    <h3 class="font-bold text-lg mb-3">الطرف الأول (الناقل)</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <span class="font-medium">الاسم:</span>
+                            <span class="block mt-1 p-1 bg-white border">عبدالله سعيد المالكي</span>
+                        </div>
+                        <div>
+                            <span class="font-medium">رقم الهوية:</span>
+                            <span class="block mt-1 p-1 bg-white border">1099178715</span>
+                        </div>
+                        <div>
+                            <span class="font-medium">العنوان:</span>
+                            <span class="block mt-1 p-1 bg-white border">حي الصفا</span>
+                        </div>
+                        <div>
+                            <span class="font-medium"> الهاتف:</span>
+                            <span class="block mt-1 p-1 bg-white border">0550388389</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="party-box p-4">
+                    <h3 class="font-bold text-lg mb-3">الطرف الثاني (المستفيد)</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <span class="font-medium">الاسم:</span>
+                            <input type="text" id="beneficiaryName" class="input-field w-full text-right" placeholder="أدخل اسم المستفيد">
+                        </div>
+                        <div>
+                            <span class="font-medium">رقم الهوية:</span>
+                            <input type="text" id="beneficiaryID" class="input-field w-full text-right" placeholder="أدخل رقم الهوية">
+                        </div>
+                        <div>
+                            <span class="font-medium">العنوان:</span>
+                            <input type="text" id="beneficiaryAddress" class="input-field w-full text-right" placeholder="أدخل عنوان السكن">
+                        </div>
+                        <div>
+                            <span class="font-medium">الهاتف:</span>
+                            <input type="text" id="beneficiaryPhone" class="input-field w-full text-right" placeholder="أدخل رقم الهاتف">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="section-title font-bold text-lg">بنود العقد</h3>
+                
+                <div class="space-y-4">
+                    <div class="clause-item">
+                        <h4 class="font-semibold mb-1">1. موضوع العقد:</h4>
+                        <p>يلتزم الطرف الأول (الناقل) بنقل الطرف الثاني (المستفيد) من مقر سكنه الكائن في 
+                            <input type="text" id="beneficiaryDistrict" class="input-field text-center" style="width: 120px;" placeholder="أدخل اسم الحي"> 
+                            إلى <span class="input-field text-center" style="width: 120px;">جامعة البترجي</span> 
+                            والعودة مرة أخرى إلى نفس العنوان، وذلك طوال فترة العقد.
+                        </p>
+                    </div>
+                    
+                    <div class="clause-item">
+                        <h4 class="font-semibold mb-1">2. مدة العقد:</h4>
+                        <p>يبدأ العقد من تاريخ
+                            <input type="text" id="startDate" class="input-field text-center datepicker" style="width: 120px;" placeholder="اختر التاريخ">
+                            <div class="mt-2">
+                                <span id="startDateDisplay" class="date-display">سيظهر التاريخ هنا بعد الاختيار</span>
+                            </div>
+                            ولمدة
+                            <select id="contractDuration" class="input-field text-center" style="width: 100px;">
+                                <option value="1">شهر واحد</option>
+                                <option value="2">شهرين</option>
+                                <option value="3">3 أشهر</option>
+                                <option value="4">4 أشهر</option>
+                                <option value="5">5 أشهر</option>
+                                <option value="6">6 أشهر</option>
+                                <option value="7">7 أشهر</option>
+                                <option value="8">8 أشهر</option>
+                                <option value="9">9 أشهر</option>
+                                <option value="10">10 أشهر</option>
+                                <option value="11">11 شهراً</option>
+                                <option value="12">سنة كاملة</option>
+                            </select>
+                            وينتهي بتاريخ
+                            <span id="endDateDisplay" class="input-field text-center" style="width: 120px; background-color: #f0f4f8;"></span>
+                        </p>
+                    </div>
+                    
+                    <div class="clause-item">
+                        <h4 class="font-semibold mb-1">3. مواعيد النقل:</h4>
+                        <ul class="list-disc pr-5 space-y-1">
+                            <li>الوصول إلى الجامعة: الساعة <input type="text" id="pickupTime" class="input-field text-center timepicker" style="width: 80px;"> صباحاً.</li>
+                            <li>العودة من الجامعة: الساعة <input type="text" id="returnTime" class="input-field text-center timepicker" style="width: 80px;"> مساءً.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="clause-item">
+                        <h4 class="font-semibold mb-1">4. الرسوم وطريقة الدفع:</h4>
+                        <p>
+                            قيمة النقل الشهرية:
+                            <select id="monthlyFee" class="input-field text-center" style="width: 100px;">
+                                <option value="">اختر المبلغ</option>
+                                <option value="500">500 ريال</option>
+                                <option value="600">600 ريال</option>
+                                <option value="700">700 ريال</option>
+                                <option value="800">800 ريال</option>
+                                <option value="900">900 ريال</option>
+                                <option value="1000">1000 ريال</option>
+                            </select>
+                            وتُدفع مقدمًا في بداية كل شهر.
+                        </p>
+                    </div>
+                    
+                    <div class="clause-item">
+                        <h4 class="font-semibold mb-1">5. التزامات الطرفين:</h4>
+                        <ul class="list-disc pr-5 space-y-1">
+                            <li><span class="font-medium">الطرف الأول:</span> الالتزام بالمواعيد، وتوفير وسيلة نقل آمنة، والتعامل باحترام.</li>
+                            <li><span class="font-medium">الطرف الثاني:</span> دفع الرسوم في موعدها، الالتزام بالوقت، والمحافظة على نظافة الحافلة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="section-title font-bold text-lg">أحكام عامة</h3>
+                
+                <div class="space-y-3">
+                    <p>1. هذا العقد ملزم للطرفين طوال مدته.</p>
+                    <p>2. يحق لأي من الطرفين فسخ العقد بعد إشعار الطرف الآخر كتابيًا قبل 5 أيام من نهاية الشهر، مع تسوية المستحقات المالية.</p>
+                    <p>3. في حال حدوث أي خلاف، يتم حله بالطرق الودية، وإذا تعذر ذلك، يرفع للجهات المختصة في المملكة العربية السعودية.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 no-print">
+                <div class="signature-box">
+                    <h4 class="font-bold text-center mb-4">توقيع الطرف الأول (الناقل)</h4>
+                    <div class="text-center">
+                        <p class="mb-2">الاسم: عبدالله سعيد المالكي</p>
+                        <canvas id="carrierSignatureCanvas" class="border border-gray-300 rounded-md w-full h-32"></canvas>
+                        <button onclick="clearSignature('carrierSignatureCanvas')" class="btn-clear text-sm mt-2 text-gray-500 hover:text-red-500">مسح التوقيع</button>
+                    </div>
+                </div>
+                
+                <div class="signature-box">
+                    <h4 class="font-bold text-center mb-4">توقيع الطرف الثاني (المستفيد)</h4>
+                    <div class="text-center">
+                        <p class="mb-2">الاسم: <span id="beneficiarySignerName"></span></p>
+                        <canvas id="beneficiarySignatureCanvas" class="border border-gray-300 rounded-md w-full h-32"></canvas>
+                        <button onclick="clearSignature('beneficiarySignatureCanvas')" class="btn-clear text-sm mt-2 text-gray-500 hover:text-red-500">مسح التوقيع</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="print-signatures">
+                <div class="print-signature">
+                    <h4>توقيع الطرف الأول (الناقل)</h4>
+                    <p>الاسم: عبدالله سعيد المالكي</p>
+                    <img id="carrierSignatureImage" class="signature-image" alt="توقيع الناقل">
+                </div>
+                
+                <div class="print-signature">
+                    <h4>توقيع الطرف الثاني (المستفيد)</h4>
+                    <p>الاسم: <span id="printBeneficiaryName"></span></p>
+                    <img id="beneficiarySignatureImage" class="signature-image" alt="توقيع المستفيد">
+                </div>
+            </div>
+
+            <div class="flex justify-center space-x-4 space-x-reverse mt-8 no-print">
+                <button onclick="printContractWithName()" class="btn btn-primary">
+                    <i class="fas fa-print ml-2"></i>
+                    طباعة العقد
+                </button>
+                
+                <button onclick="shareContract()" class="btn btn-secondary">
+                    <i class="fas fa-share-alt ml-2"></i>
+                    مشاركة العقد
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/ar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const beneficiarySignerName = document.getElementById('beneficiarySignerName');
+            const contractDaySpan = document.getElementById('contractDay');
+            const contractDateInput = document.getElementById('contractDate');
+            const beneficiaryIDInput = document.getElementById('beneficiaryID');
+            const beneficiaryPhoneInput = document.getElementById('beneficiaryPhone');
+            const beneficiaryNameInput = document.getElementById('beneficiaryName');
+            const beneficiaryAddressInput = document.getElementById('beneficiaryAddress');
+            const beneficiaryDistrictInput = document.getElementById('beneficiaryDistrict');
+            const startDateInput = document.getElementById('startDate');
+            const startDateDisplay = document.getElementById('startDateDisplay');
+            const contractDurationSelect = document.getElementById('contractDuration');
+            const endDateDisplay = document.getElementById('endDateDisplay');
+            const pickupTimeInput = document.getElementById('pickupTime');
+            const returnTimeInput = document.getElementById('returnTime');
+            const monthlyFeeSelect = document.getElementById('monthlyFee');
+            const printBeneficiaryName = document.getElementById('printBeneficiaryName');
+            const carrierSignatureImage = document.getElementById('carrierSignatureImage');
+            const beneficiarySignatureImage = document.getElementById('beneficiarySignatureImage');
+
+            const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+
+            // Initialize Signature Pads
+            const carrierCanvas = document.getElementById('carrierSignatureCanvas');
+            const beneficiaryCanvas = document.getElementById('beneficiarySignatureCanvas');
+            
+            const signaturePadOptions = {
+                backgroundColor: 'rgb(255, 255, 255)',
+                penColor: 'rgb(45, 82, 160)'
+            };
+
+            let carrierSignaturePad = new SignaturePad(carrierCanvas, signaturePadOptions);
+            let beneficiarySignaturePad = new SignaturePad(beneficiaryCanvas, signaturePadOptions);
+
+            function resizeCanvas() {
+                const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                carrierCanvas.width = carrierCanvas.offsetWidth * ratio;
+                carrierCanvas.height = carrierCanvas.offsetHeight * ratio;
+                carrierCanvas.getContext("2d").scale(ratio, ratio);
+
+                beneficiaryCanvas.width = beneficiaryCanvas.offsetWidth * ratio;
+                beneficiaryCanvas.height = beneficiaryCanvas.offsetHeight * ratio;
+                beneficiaryCanvas.getContext("2d").scale(ratio, ratio);
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // set initial date automatically
+            function setInitialDate() {
+                const today = new Date();
+                const dayIndex = today.getDay();
+                const formattedDate = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+                contractDaySpan.textContent = days[dayIndex];
+                contractDateInput.value = formattedDate;
+            }
+
+            // update beneficiary name for printing
+            function updatePrintName() {
+                printBeneficiaryName.textContent = beneficiaryNameInput.value || "........................";
+                beneficiarySignerName.textContent = beneficiaryNameInput.value || "........................";
+            }
+
+            // update start date display
+            function updateStartDateDisplay(selectedDate) {
+                if (selectedDate) {
+                    const date = new Date(selectedDate);
+                    const dayIndex = date.getDay();
+                    const dayName = days[dayIndex];
+                    const formattedDate = date.getFullYear() + '-' + 
+                                       String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+                                       String(date.getDate()).padStart(2, '0');
+                    
+                    startDateDisplay.textContent = `${dayName} ${formattedDate}`;
+                } else {
+                    startDateDisplay.textContent = 'سيظهر التاريخ هنا بعد الاختيار';
+                }
+            }
+
+            // calculate end date
+            function calculateEndDate() {
+                const startDateStr = startDateInput.value;
+                const duration = parseInt(contractDurationSelect.value);
+                
+                if (startDateStr && duration) {
+                    const startDate = new Date(startDateStr);
+                    const endDate = new Date(startDate);
+                    endDate.setMonth(startDate.getMonth() + duration);
+                    
+                    // format the date for display
+                    const formattedEndDate = endDate.getFullYear() + '-' + 
+                                           String(endDate.getMonth() + 1).padStart(2, '0') + '-' + 
+                                           String(endDate.getDate()).padStart(2, '0');
+                    
+                    endDateDisplay.textContent = formattedEndDate;
+                } else {
+                    endDateDisplay.textContent = '';
+                }
+            }
+
+            // validate input data
+            function validateInput(event, fieldName, type) {
+                const value = event.target.value.replace(/\s/g, '');
+                
+                if (type === 'id' && (value.length !== 10 || isNaN(value))) {
+                    event.target.classList.add('border-red-500');
+                    alert('يجب أن يكون رقم الهوية مكونًا من 10 أرقام فقط.');
+                    return false;
+                }
+                
+                if (type === 'phone' && (value.length !== 10 || isNaN(value) || !value.startsWith('05'))) {
+                    event.target.classList.add('border-red-500');
+                    alert('يجب أن يكون رقم الهاتف مكونًا من 10 أرقام ويبدأ بـ 05.');
+                    return false;
+                }
+                
+                event.target.classList.remove('border-red-500');
+                return true;
+            }
+            
+            // validate the form
+            function validateForm() {
+                const requiredFields = [
+                    'beneficiaryName', 
+                    'beneficiaryID', 
+                    'beneficiaryAddress',
+                    'beneficiaryPhone'
+                ];
+                
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    const element = document.getElementById(field);
+                    if (!element.value.trim()) {
+                        element.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        element.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (beneficiaryIDInput.value && !validateInput({target: beneficiaryIDInput}, 'رقم الهوية', 'id')) {
+                    isValid = false;
+                }
+                
+                if (beneficiaryPhoneInput.value && !validateInput({target: beneficiaryPhoneInput}, 'رقم الهاتف', 'phone')) {
+                    isValid = false;
+                }
+                
+                if (carrierSignaturePad.isEmpty() || beneficiarySignaturePad.isEmpty()) {
+                    alert('يرجى التوقيع في الحقول المخصصة قبل الطباعة أو المشاركة.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+            
+            // share the contract
+            function shareContract() {
+                if (!validateForm()) {
+                    return;
+                }
+                
+                if (navigator.share) {
+                    const title = document.title;
+                    const beneficiaryName = beneficiaryNameInput.value.trim();
+                    const text = `عقد نقل جامعي مع المالكي للنقل - ${beneficiaryName}\n\nللاطلاع على العقد، يرجى زيارة هذا الرابط: ${window.location.href}`;
+                    navigator.share({
+                        title: title,
+                        text: text,
+                        url: window.location.href
+                    }).then(() => {
+                        console.log('Contract shared successfully!');
+                    }).catch((error) => {
+                        console.error('Error sharing:', error);
+                    });
+                } else {
+                    alert('لا يدعم متصفحك ميزة المشاركة. يمكنك نسخ رابط الصفحة يدويًا.');
+                }
+            }
+            
+            // clear signature
+            window.clearSignature = function(canvasId) {
+                if (canvasId === 'carrierSignatureCanvas') {
+                    carrierSignaturePad.clear();
+                } else if (canvasId === 'beneficiarySignatureCanvas') {
+                    beneficiarySignaturePad.clear();
+                }
+            }
+
+            // initialize Flatpickr
+            flatpickr("#contractDate", {
+                locale: "ar",
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length > 0) {
+                        const date = selectedDates[0];
+                        const dayIndex = date.getDay();
+                        contractDaySpan.textContent = days[dayIndex];
+                    } else {
+                        contractDaySpan.textContent = '';
+                    }
+                }
+            });
+            
+            flatpickr(".datepicker", {
+                locale: "ar",
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                onChange: function(selectedDates, dateStr, instance) {
+                    updateStartDateDisplay(dateStr);
+                    calculateEndDate();
+                }
+            });
+            
+            flatpickr(".timepicker", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K",
+                time_24hr: false,
+                locale: "ar"
+            });
+
+            // add event listeners for validation
+            beneficiaryIDInput.addEventListener('blur', (event) => validateInput(event, 'رقم الهوية', 'id'));
+            beneficiaryPhoneInput.addEventListener('blur', (event) => validateInput(event, 'رقم الهاتف', 'phone'));
+            beneficiaryNameInput.addEventListener('input', updatePrintName);
+            
+            // add event listeners for calculating end date
+            startDateInput.addEventListener('change', function() {
+                updateStartDateDisplay(this.value);
+                calculateEndDate();
+            });
+            contractDurationSelect.addEventListener('change', calculateEndDate);
+            
+            // initial setup
+            setInitialDate();
+            updatePrintName();
+
+            // expose functions to the global scope
+            window.shareContract = shareContract;
+
+            const originalTitle = document.title;
+            const printButton = document.querySelector('.btn-primary');
+
+            window.printContractWithName = function() {
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // تحديث اسم المستفيد للطباعة
+                updatePrintName();
+                
+                const beneficiaryName = document.getElementById('beneficiaryName').value.trim();
+                
+                if (beneficiaryName) {
+                    document.title = `عقد نقل جامعي - ${beneficiaryName}`;
+                } else {
+                    document.title = 'عقد نقل جامعي';
+                }
+
+                // Capture signatures as images and add them to the print view
+                if (!carrierSignaturePad.isEmpty()) {
+                    carrierSignatureImage.src = carrierSignaturePad.toDataURL();
+                } else {
+                    carrierSignatureImage.src = '';
+                }
+
+                if (!beneficiarySignaturePad.isEmpty()) {
+                    beneficiarySignatureImage.src = beneficiarySignaturePad.toDataURL();
+                } else {
+                    beneficiarySignatureImage.src = '';
+                }
+
+                // Add a slight delay to ensure the browser has time to render the image
+                setTimeout(() => {
+                    window.print();
+                }, 50);
+            }
+
+            window.addEventListener('afterprint', () => {
+                document.title = originalTitle;
+            });
+        });
+    </script>
+</body>
+</html>
